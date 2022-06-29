@@ -8,7 +8,8 @@ fun loadContributorsBlocking(service: GitHubService, req: RequestData) : List<Us
         .getOrgReposCall(req.org)
         .execute() // Executes request and blocks the current thread
         .also { logRepos(req, it) }
-        .body() ?: listOf()
+        .bodyList()
+//        .body() ?: listOf()
 
     return repos.flatMap { repo ->
         service
